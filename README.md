@@ -26,20 +26,24 @@
 | `getCurrentDate()` | 현재 날짜 리턴 (yyyy-MM-dd 형식) |
 
 
-## 🛠️ Article 클래스 예시
+## 🛠️ Article 클래스 예시(lombok 사용)
 
 ```java
 public class Article {
     private int id;
     private String title;
     private String author;
-    private String content;
-    private String Keyword;
+    private String content; 
+    private String keyword;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-    private int viewCount;
+    private int viewCount; // 조회수
 
 }
 ```
+**🧪 TDD 워크플로(권장)**
 
-
+- **테스트 먼저 작성(실패)**: 요구사항/엣지 케이스 정의
+- **구현(통과)**: 최소 코드로 테스트 통과
+- **리팩터링**: 중복 제거/가독성 개선(테스트는 계속 통과)
+- 사용 라이브러리: JUnit 5, AssertJ
