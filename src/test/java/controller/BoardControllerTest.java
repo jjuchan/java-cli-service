@@ -109,8 +109,36 @@ class BoardControllerTest {
         controller.actionList();
 
         String output = testOut.toString();
-        assertThat(output).contains("번호 | 제목 | 작성자 | 작성일 | 조회수")
-                .contains("-------------------------------");
+
+        // 출력에 특정 게시글 필드들이 포함됐는지 확인
+        assertThat(output).contains("번호: ")
+                .contains("제목: ")
+                .contains("작성자: ")
+                .contains("작성일: ")
+                .contains("조회수: ")
+                .contains("--------------------------");
+    }
+
+    @Test
+    @DisplayName("actionDetail test")
+    void actionDetail() {
+        String input = "테스트 제목\n테스트 내용\n테스트 작성자\n";
+        ByteArrayInputStream testIn = new ByteArrayInputStream(input.getBytes());
+        System.setIn(testIn);
+
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+
+        Scanner scanner = new Scanner(System.in);
+        AppContext context = new AppContext();
+        BoardController controller = new BoardController(context);
+
+        controller.actionWrite();
+        controller.actionDetail();
+
+        String output = testOut.toString();
+        assertThat(output).contains("제목:").contains("내용:").contains("작성자:")
+                .contains("작성일:").contains("수정일:").contains("조회수:");
     }
 
 }

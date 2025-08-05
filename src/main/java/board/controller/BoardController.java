@@ -6,6 +6,7 @@ import board.repository.BoardRepository;
 import board.service.BoardService;
 import util.AppContext;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class BoardController {
@@ -34,12 +35,28 @@ public class BoardController {
     }
 
     public void actionList() {
-        System.out.println("번호 | 제목 | 작성자 | 작성일 | 조회수");
-        System.out.println("-------------------------------");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
         for (Board board : boardService.getAllBoards()) {
-            System.out.printf("%d | %s | %s | %s | %d\n", board.getId(), board.getTitle(), board.getAuthor(), board.getCreatedDate(), board.getViewCount());
+
+            String createdDateStr = board.getCreatedDate() != null
+                    ? board.getCreatedDate().format(formatter)
+                    : "미정";
+
+            String modifiedDateStr = board.getModifiedDate() != null
+                    ? board.getModifiedDate().format(formatter)
+                    : "미정";
+
+            System.out.println("번호: " + board.getId());
+            System.out.println("제목: " + board.getTitle());
+            System.out.println("작성자: " + board.getAuthor());
+            System.out.println("작성일: " + createdDateStr);
+            System.out.println("수정일: " + modifiedDateStr);
+            System.out.println("조회수: " + board.getViewCount());
+            System.out.println("--------------------------");
         }
     }
+
 
     public void actionDetail() {
     }

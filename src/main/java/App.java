@@ -13,35 +13,37 @@ public class App {
     void run() {
         BoardController boardController = new BoardController(new AppContext());
 
-        System.out.print("명령어:");
-        String cmd = sc.nextLine().trim();
-
         while (true) {
-            if(cmd.equals("write")) {
-                boardController.actionWrite();
-            } else if(cmd.equals("list")) {
-                boardController.actionList();
-            } else if(cmd.equals("detail")) { //조회수 증가
-                // detail();
-            } else if(cmd.equals("update")) {
-                // update();
-            } else if(cmd.equals("delete")) {
-                // delete();
-            } else if(cmd.equals("exit")) {
-                // exit();
-            } else if(cmd.equals("search")) {
-                // search();
-            } else {
-                System.out.println("알 수 없는 명령어입니다.");
-            }
+            System.out.print("명령어:");
+            String cmd = sc.nextLine().trim();
 
+            switch (cmd) {
+                case "write":
+                    boardController.actionWrite();
+                    break;
+                case "list":
+                    boardController.actionList();
+                    break;
+                case "detail":
+                    // detail();
+                    break;
+                case "update":
+                    // update();
+                    break;
+                case "delete":
+                    // delete();
+                    break;
+                case "exit":
+                    System.out.println("프로그램을 종료합니다.");
+                    return; // 또는 break; + 루프 밖에 exit 처리
+                case "search":
+                    break;
+                default:
+                    System.out.println("알 수 없는 명령어입니다.");
+                    break;
+            }
         }
 
-
-
-
     }
-
-
 
 }
