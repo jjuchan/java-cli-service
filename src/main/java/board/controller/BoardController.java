@@ -1,14 +1,18 @@
 package board.controller;
 
+
+import util.AppContext;
+
 import java.util.Scanner;
 
 public class BoardController {
+    private final Scanner sc;
 
-    Scanner sc = new Scanner(System.in);
-
+    public BoardController(AppContext context) {
+        this.sc = context.getScanner();
+    }
 
     public void actionWrite() {
-
 
         System.out.println("제목: ");
         String title = sc.nextLine().trim();
@@ -16,23 +20,27 @@ public class BoardController {
         System.out.println("내용: ");
         String content = sc.nextLine().trim();
 
+        System.out.println("작성자: ");
+        String author = sc.nextLine().trim();
 
 
     }
 
-    public void list() {
+    public void actionList() {
 
     }
 
-    public void detail() {
+    public void actionDetail() {
     }
 
-    public void update() {
+    public void actionUpdate() {
     }
 
-    public void delete() {
+    public void actionDelete() {
     }
 
-    public void exit() {
+    public void actionExit() {
     }
+
+
 }
