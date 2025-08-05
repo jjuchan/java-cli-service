@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardRepository {
-    private List<Board> boards = new ArrayList<>();
+    private final List<Board> boards = new ArrayList<>();
     private int lastId;
 
-
-
-    private void write() {
+    public Board save(Board board) {
+        board.setId(++lastId);
+        boards.add(board);
+        return board;
     }
 }

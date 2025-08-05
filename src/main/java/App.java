@@ -13,7 +13,7 @@ public class App {
     void run() {
         BoardController boardController = new BoardController(new AppContext());
 
-        System.out.println("명령어:");
+        System.out.print("명령어:");
         String cmd = sc.nextLine().trim();
 
         while (true) {
