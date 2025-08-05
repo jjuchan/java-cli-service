@@ -97,4 +97,20 @@ class BoardControllerTest {
 
     }
 
+    @Test
+    @DisplayName("actionList test")
+    void actionList() {
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+
+        AppContext context = new AppContext();
+        BoardController controller = new BoardController(context);
+
+        controller.actionList();
+
+        String output = testOut.toString();
+        assertThat(output).contains("번호 | 제목 | 작성자 | 작성일 | 조회수")
+                .contains("-------------------------------");
+    }
+
 }

@@ -14,4 +14,8 @@ public class BoardRepository {
         boards.add(board);
         return board;
     }
+
+    public List<Board> getAllBoards() {
+        return boards;
+    }
 }

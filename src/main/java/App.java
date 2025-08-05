@@ -20,7 +20,7 @@ public class App {
             if(cmd.equals("write")) {
                 boardController.actionWrite();
             } else if(cmd.equals("list")) {
-                // list();
+                boardController.actionList();
             } else if(cmd.equals("detail")) { //조회수 증가
                 // detail();
             } else if(cmd.equals("update")) {

@@ -34,7 +34,11 @@ public class BoardController {
     }
 
     public void actionList() {
-
+        System.out.println("번호 | 제목 | 작성자 | 작성일 | 조회수");
+        System.out.println("-------------------------------");
+        for (Board board : boardService.getAllBoards()) {
+            System.out.printf("%d | %s | %s | %s | %d\n", board.getId(), board.getTitle(), board.getAuthor(), board.getCreatedDate(), board.getViewCount());
+        }
     }
 
     public void actionDetail() {
