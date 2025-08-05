@@ -34,4 +34,10 @@ public class BoardService {
         return boardRepository.getAllBoards();
     }
 
+    public Board findById(int boarId) {
+        return boardRepository.findById(boarId);
+    }
+    public void increaseViewCount(int boardId) {
+        boardRepository.increaseViewCount(boardId);
+    }
 }

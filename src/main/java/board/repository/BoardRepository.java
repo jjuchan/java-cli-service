@@ -18,4 +18,17 @@ public class BoardRepository {
     public List<Board> getAllBoards() {
         return boards;
     }
+
+    public Board findById(int boarId) {
+        return boards.stream()
+                .filter(board -> board.getId() == boarId)
+                .findFirst()
+                .orElse(null);
+    }
+    public void increaseViewCount(int boardId) {
+        Board board = findById(boardId);
+        if (board != null) {
+            board.setViewCount(board.getViewCount() + 1);
+        }
+    }
 }

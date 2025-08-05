@@ -134,7 +134,7 @@ class BoardControllerTest {
         BoardController controller = new BoardController(context);
 
         controller.actionWrite();
-        controller.actionDetail();
+        controller.actionDetail(1);
 
         String output = testOut.toString();
         assertThat(output).contains("제목:").contains("내용:").contains("작성자:")
