@@ -26,10 +26,10 @@
 | `getCurrentDate()` | 현재 날짜 리턴 (yyyy-MM-dd 형식) |
 
 
-## 🛠️ Article 클래스 예시(lombok 사용)
+## 🛠️ Board 클래스 예시(lombok 사용)
 
 ```java
-public class Article {
+public class Board {
     private int id;
     private String title;
     private String author;
