@@ -3,7 +3,6 @@ package controller;
 import board.controller.BoardController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.AppContext;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

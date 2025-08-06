@@ -4,7 +4,7 @@ package board.controller;
 import board.entity.Board;
 import board.repository.BoardRepository;
 import board.service.BoardService;
-import util.AppContext;
+
 
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -13,8 +13,8 @@ public class BoardController {
     private final Scanner sc;
     private final BoardService boardService;
 
-    public BoardController(AppContext context) {
-        this.sc = context.getScanner();
+    public BoardController() {
+        this.sc = AppCon();
         this.boardService = new BoardService(new BoardRepository());
     }
 

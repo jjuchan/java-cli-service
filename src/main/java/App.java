@@ -1,21 +1,23 @@
 import board.controller.BoardController;
-import util.AppContext;
+import system.controller.SystemController;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class App {
     private final Scanner sc;
-    private final BoardController boardController;
 
-    public App(AppContext appContext) {
-        this.sc = appContext.getScanner();
-        this.boardController = new BoardController(appContext);
+    public App() {
+        this.sc = AppContext.sc;
     }
 
     void run() {
+        SystemController systemController = AppContext.systemController;
+        BoardController boardController = new BoardController();
+
+        System.out.print("명령어: ");
+
         while (true) {
-            System.out.print("명령어: ");
             String input = sc.nextLine().trim();
 
             StringTokenizer st = new StringTokenizer(input);
