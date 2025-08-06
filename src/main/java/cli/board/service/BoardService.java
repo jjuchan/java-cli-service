@@ -19,7 +19,6 @@ public class BoardService {
         board.setTitle(title);
         board.setAuthor(author);
         board.setContent(content);
-        board.setKeyword("");
         board.setViewCount(0);
 
         return boardRepository.save(board);
@@ -44,7 +43,7 @@ public class BoardService {
         }
     }
 
-    public void update(int boarId, String title, String content, String author) {
+    public void update(int boarId, String title, String content) {
         Board board = boardRepository.findById(boarId);
 
         if (board == null) {
@@ -53,7 +52,6 @@ public class BoardService {
         }
         board.setTitle(title);
         board.setContent(content);
-        board.setAuthor(author);
         board.setModifiedDate(LocalDateTime.now());
 
     }

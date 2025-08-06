@@ -4,8 +4,8 @@ package cli.board.controller;
 import cli.AppContext;
 import cli.board.entity.Board;
 import cli.board.service.BoardService;
+import cli.util.PrintBoard;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -42,7 +42,7 @@ public class BoardController {
 
         for (Board board : boards) {
 
-            printBoard(board);
+            PrintBoard.print(board);
 
         }
     }
@@ -57,7 +57,7 @@ public class BoardController {
 
         boardService.increaseViewCount(boarId);
 
-        printBoard(board);
+        PrintBoard.print(board);
     }
 
     public void actionUpdate(int boardId) {
@@ -71,7 +71,7 @@ public class BoardController {
         System.out.print("내용 (현재: " + board.getContent() + "): ");
         String content = sc.nextLine().trim();
 
-        boardService.update(boardId, title, content, board.getAuthor());
+        boardService.update(boardId, title, content);
         System.out.println(boardId + " 번 글이 수정되었습니다.");
 
     }
@@ -99,9 +99,9 @@ public class BoardController {
     public void actionSearch(String keyword) {
         List<Board> boards = boardService.getAllBoards();
         boolean found = false;
-        for (Board board : boardService.getAllBoards()) {
+        for (Board board : boards) {
             if (board.getTitle().contains(keyword) || board.getContent().contains(keyword) || board.getAuthor().contains(keyword)) {
-                printBoard(board);
+                PrintBoard.print(board);
                 found = true;
             }
         }
@@ -110,22 +110,5 @@ public class BoardController {
         }
     }
 
-    private void printBoard(Board board) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String createdDateStr = board.getCreatedDate() != null
-                ? board.getCreatedDate().format(formatter)
-                : "미정";
-        String modifiedDateStr = board.getModifiedDate() != null
-                ? board.getModifiedDate().format(formatter)
-                : "미정";
 
-        System.out.println("번호: " + board.getId());
-        System.out.println("제목: " + board.getTitle());
-        System.out.println("내용: " + board.getContent());
-        System.out.println("작성자: " + board.getAuthor());
-        System.out.println("작성일: " + createdDateStr);
-        System.out.println("수정일: " + modifiedDateStr);
-        System.out.println("조회수: " + board.getViewCount());
-        System.out.println("----------------------------");
-    }
 }
