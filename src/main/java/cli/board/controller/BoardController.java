@@ -6,6 +6,7 @@ import cli.board.entity.Board;
 import cli.board.service.BoardService;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class BoardController {
@@ -36,7 +37,11 @@ public class BoardController {
     public void actionList() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        for (Board board : boardService.getAllBoards()) {
+        List<Board> boards = boardService.getAllBoards();
+
+        boards.sort((b1, b2) -> b2.getModifiedDate().compareTo(b1.getModifiedDate()));
+
+        for (Board board : boards) {
 
             String createdDateStr = board.getCreatedDate() != null
                     ? board.getCreatedDate().format(formatter)

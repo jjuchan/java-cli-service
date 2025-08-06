@@ -133,4 +133,26 @@ class BoardControllerTest {
                 .contains("내용 (현재: 내용1):")
                 .contains("번 글이 수정되었습니다.");
     }
+
+    @Test
+    @DisplayName("actionSearch test")
+    void actionSearch() {
+        String rs = AppTestRunner.run("""
+                write
+                제목1
+                내용1
+                작성자1
+                write
+                제목2
+                내용2
+                작성자2
+                search 제목1
+                """);
+
+        assertThat(rs).contains("번호: ")
+                .contains("제목: 제목1")
+                .contains("작성자: 작성자1")
+                .doesNotContain("제목: 제목2");
+    }
+
 }
