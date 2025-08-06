@@ -19,7 +19,6 @@ public class App {
 
         System.out.println("== 게시판 앱 ==");
 
-
         while (true) {
             System.out.print("명령어: ");
             String input = sc.nextLine().trim();

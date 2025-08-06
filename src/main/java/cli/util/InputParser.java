@@ -18,7 +18,6 @@ public class InputParser {
     public static void handleSearch(String input, BoardController boardController) {
         String[] tokens = input.split("\\s+");
         if (tokens.length > 1) {
-            // 명령어 이후 전체를 검색어로 사용
             String keyword = input.substring(input.indexOf(" ") + 1).trim();
             boardController.actionSearch(keyword);
         } else {

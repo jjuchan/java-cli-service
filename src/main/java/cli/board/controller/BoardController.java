@@ -35,7 +35,6 @@ public class BoardController {
     }
 
     public void actionList() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         List<Board> boards = boardService.getAllBoards();
 
@@ -43,22 +42,8 @@ public class BoardController {
 
         for (Board board : boards) {
 
-            String createdDateStr = board.getCreatedDate() != null
-                    ? board.getCreatedDate().format(formatter)
-                    : "미정";
+            printBoard(board);
 
-            String modifiedDateStr = board.getModifiedDate() != null
-                    ? board.getModifiedDate().format(formatter)
-                    : "미정";
-
-            System.out.println("번호: " + board.getId());
-            System.out.println("제목: " + board.getTitle());
-            System.out.println("내용: " + board.getContent());
-            System.out.println("작성자: " + board.getAuthor());
-            System.out.println("작성일: " + createdDateStr);
-            System.out.println("수정일: " + modifiedDateStr);
-            System.out.println("조회수: " + board.getViewCount());
-            System.out.println("--------------------------");
         }
     }
 
@@ -70,24 +55,9 @@ public class BoardController {
             return;
         }
 
-        // 조회수 증가
         boardService.increaseViewCount(boarId);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String createdDateStr = board.getCreatedDate() != null
-                ? board.getCreatedDate().format(formatter)
-                : "미정";
-        String modifiedDateStr = board.getModifiedDate() != null
-                ? board.getModifiedDate().format(formatter)
-                : "미정";
-
-        System.out.println("번호: " + board.getId());
-        System.out.println("제목: " + board.getTitle());
-        System.out.println("내용: " + board.getContent());
-        System.out.println("작성자: " + board.getAuthor());
-        System.out.println("작성일: " + createdDateStr);
-        System.out.println("수정일: " + modifiedDateStr);
-        System.out.println("조회수: " + board.getViewCount());
+        printBoard(board);
     }
 
     public void actionUpdate(int boardId) {
@@ -127,28 +97,35 @@ public class BoardController {
 
 
     public void actionSearch(String keyword) {
-
+        List<Board> boards = boardService.getAllBoards();
+        boolean found = false;
         for (Board board : boardService.getAllBoards()) {
             if (board.getTitle().contains(keyword) || board.getContent().contains(keyword) || board.getAuthor().contains(keyword)) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-                String createdDateStr = board.getCreatedDate() != null
-                        ? board.getCreatedDate().format(formatter)
-                        : "미정";
-
-                String modifiedDateStr = board.getModifiedDate() != null
-                        ? board.getModifiedDate().format(formatter)
-                        : "미정";
-
-                System.out.println("번호: " + board.getId());
-                System.out.println("제목: " + board.getTitle());
-                System.out.println("내용: " + board.getContent());
-                System.out.println("작성자: " + board.getAuthor());
-                System.out.println("작성일: " + createdDateStr);
-                System.out.println("수정일: " + modifiedDateStr);
-                System.out.println("조회수: " + board.getViewCount());
-                System.out.println("--------------------------");
+                printBoard(board);
+                found = true;
             }
         }
+        if (!found) {
+            System.out.println("검색 결과가 없습니다.");
+        }
+    }
+
+    private void printBoard(Board board) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String createdDateStr = board.getCreatedDate() != null
+                ? board.getCreatedDate().format(formatter)
+                : "미정";
+        String modifiedDateStr = board.getModifiedDate() != null
+                ? board.getModifiedDate().format(formatter)
+                : "미정";
+
+        System.out.println("번호: " + board.getId());
+        System.out.println("제목: " + board.getTitle());
+        System.out.println("내용: " + board.getContent());
+        System.out.println("작성자: " + board.getAuthor());
+        System.out.println("작성일: " + createdDateStr);
+        System.out.println("수정일: " + modifiedDateStr);
+        System.out.println("조회수: " + board.getViewCount());
+        System.out.println("----------------------------");
     }
 }
