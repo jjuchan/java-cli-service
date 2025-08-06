@@ -85,7 +85,20 @@ public class BoardController {
         System.out.println("조회수: " + board.getViewCount());
     }
 
-    public void actionUpdate() {
+    public void actionUpdate(int boardId) {
+        Board board = boardService.findById(boardId);
+        if (board == null) {
+            System.out.println("해당 게시글이 존재하지 않습니다.");
+            return;
+        }
+        System.out.print("제목 (현재: " + board.getTitle() + "): ");
+        String title = sc.nextLine().trim();
+        System.out.print("내용 (현재: " + board.getContent() + "): ");
+        String content = sc.nextLine().trim();
+
+        boardService.update(boardId,title, content, board.getAuthor());
+        System.out.println(boardId + " 번 글이 수정되었습니다.");
+
     }
 
     public void actionDelete(int boarId) {

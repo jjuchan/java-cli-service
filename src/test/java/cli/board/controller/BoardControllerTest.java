@@ -115,4 +115,22 @@ class BoardControllerTest {
         assertThat(rs).contains("번 글이 삭제되었습니다.");
     }
 
+    @Test
+    @DisplayName("actionUpdate test")
+    void actionUpdate() {
+        String rs = AppTestRunner.run("""
+                write
+                제목1
+                내용1
+                작성자1
+                update 1
+                새로운 제목
+                새로운 내용
+                """);
+
+        assertThat(rs).contains("번 글이 작성되었습니다.")
+                .contains("제목 (현재: 제목1):")
+                .contains("내용 (현재: 내용1):")
+                .contains("번 글이 수정되었습니다.");
+    }
 }
