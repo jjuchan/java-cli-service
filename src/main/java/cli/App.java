@@ -2,9 +2,9 @@ package cli;
 
 import cli.board.controller.BoardController;
 import cli.system.controller.SystemController;
+import cli.util.InputParser;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class App {
     private final Scanner sc;
@@ -24,13 +24,13 @@ public class App {
             System.out.print("명령어: ");
             String input = sc.nextLine().trim();
 
-            StringTokenizer st = new StringTokenizer(input);
-            if (!st.hasMoreTokens()) {
+            if (input.isEmpty()) {
                 System.out.println("명령어를 입력해주세요.");
                 continue;
             }
 
-            String cmd = st.nextToken();
+            String[] tokens = input.split("\\s+");
+            String cmd = tokens[0];
 
             switch (cmd) {
                 case "write":
@@ -40,51 +40,28 @@ public class App {
                     boardController.actionList();
                     break;
                 case "detail":
-                    if (st.hasMoreTokens()) {
-                        try {
-                            int boardId = Integer.parseInt(st.nextToken());
-                            boardController.actionDetail(boardId);
-                        } catch (NumberFormatException e) {
-                            System.out.println("올바른 게시글 번호를 입력하세요.");
-                        }
-                    } else {
-                        System.out.println("게시글 ID를 입력해주세요.");
+                    Integer detailId = InputParser.parseId(tokens);
+                    if (detailId != null) {
+                        boardController.actionDetail(detailId);
                     }
                     break;
                 case "update":
-                    if (st.hasMoreTokens()) {
-                        try {
-                            int boardId = Integer.parseInt(st.nextToken());
-                            boardController.actionUpdate(boardId);
-                        } catch (NumberFormatException e) {
-                            System.out.println("올바른 게시글 번호를 입력하세요.");
-                        }
-                    } else {
-                        System.out.println("게시글 ID를 입력해주세요.");
+                   Integer updateId = InputParser.parseId(tokens);
+                    if (updateId != null) {
+                        boardController.actionUpdate(updateId);
                     }
                     break;
                 case "delete":
-                    if (st.hasMoreTokens()) {
-                        try {
-                            int boardId = Integer.parseInt(st.nextToken());
-                            boardController.actionDelete(boardId);
-                        } catch (NumberFormatException e) {
-                            System.out.println("올바른 게시글 번호를 입력하세요.");
-                        }
-                    } else {
-                        System.out.println("게시글 ID를 입력해주세요.");
+                    Integer deleteId = InputParser.parseId(tokens);
+                    if (deleteId != null) {
+                        boardController.actionDelete(deleteId);
                     }
                     break;
                 case "exit":
                     systemController.actionExit();
                     return;
                 case "search":
-                    if (st.hasMoreTokens()) {
-                        String keyword = st.nextToken();
-                        boardController.actionSearch(keyword);
-                    } else {
-                        System.out.println("검색어를 입력해주세요.");
-                    }
+                    InputParser.handleSearch(input, boardController);
                     break;
                 default:
                     System.out.println("알 수 없는 명령어입니다.");
