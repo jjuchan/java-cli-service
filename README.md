@@ -5,15 +5,15 @@
 
 ## 🧩 전체 기능
 
-| 메서드              | 설명                                     |
-|------------------|----------------------------------------|
-| `write()`        | 게시글 작성                                 |
-| `list()`         | 게시글 목록 출력(조회수가 많은 순으로 정렬, 같다면 최신순으로 정렬 |
-| `detail(int id)` | 게시글 상세보기                               |
-| `update(int id)` | 게시글 수정                                 |
-| `delete(int id)` | 게시글 삭제                                 |   
-| `search(String keyword)` | 게시글 검색                                 |   
-| `exit()`         | 프로그램 종료                                |
+| 메서드              | 설명                                      |
+|------------------|-----------------------------------------|
+| `write()`        | 게시글 작성                                  |
+| `list()`         | 게시글 목록 출력(조회수가 많은 순으로 정렬, 같다면 최신순으로 정렬) |
+| `detail(int id)` | 게시글 상세보기                                |
+| `update(int id)` | 게시글 수정                                  |
+| `delete(int id)` | 게시글 삭제                                  |   
+| `search(String keyword)` | 게시글 검색(제목,글,작성자 검색 가능)                  |   
+| `exit()`         | 프로그램 종료                                 |
 
 ---
 
@@ -25,20 +25,32 @@
 
 ---
 
-## 🛠️ Board 클래스 (lombok 사용)
+## 🛠️ Entity (lombok 사용)
 
 ```java
-public class Board {
+//Base를 상속받아 시간 자동 생성
+public class Board extends Base {
     private int id;
     private String title;
     private String author;
     private String content;
+    private int viewCount; // 조회수
+
+  
+  // 시간 자동 생성 util 클래스 사용
+  public class Base {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-    private int viewCount; // 조회수
+
+    public Base() {
+      this.createdDate = LocalDateTime.now();
+      this.modifiedDate = LocalDateTime.now();
+    }
+  }
 
 }
 ```
+
 ---
 ## 🗂️주요 디렉토리
 ```
