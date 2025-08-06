@@ -12,7 +12,6 @@ public class Board extends Base {
     private String title;
     private String author;
     private String content;
-    private String keyword;
     private int viewCount; // 조회수
 
 }
