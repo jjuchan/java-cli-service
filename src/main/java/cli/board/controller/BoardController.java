@@ -1,10 +1,9 @@
-package board.controller;
+package cli.board.controller;
 
 
-import board.entity.Board;
-import board.repository.BoardRepository;
-import board.service.BoardService;
-
+import cli.AppContext;
+import cli.board.entity.Board;
+import cli.board.service.BoardService;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -14,8 +13,8 @@ public class BoardController {
     private final BoardService boardService;
 
     public BoardController() {
-        this.sc = AppCon();
-        this.boardService = new BoardService(new BoardRepository());
+        this.sc = AppContext.sc;
+        this.boardService = AppContext.boardService;
     }
 
     public void actionWrite() {

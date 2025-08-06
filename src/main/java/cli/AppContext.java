@@ -1,7 +1,9 @@
-import board.controller.BoardController;
-import board.repository.BoardRepository;
-import board.service.BoardService;
-import system.controller.SystemController;
+package cli;
+
+import cli.board.controller.BoardController;
+import cli.board.repository.BoardRepository;
+import cli.board.service.BoardService;
+import cli.system.controller.SystemController;
 
 import java.util.Scanner;
 

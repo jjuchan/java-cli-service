@@ -1,5 +1,7 @@
-import board.controller.BoardController;
-import system.controller.SystemController;
+package cli;
+
+import cli.board.controller.BoardController;
+import cli.system.controller.SystemController;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -15,9 +17,11 @@ public class App {
         SystemController systemController = AppContext.systemController;
         BoardController boardController = new BoardController();
 
-        System.out.print("명령어: ");
+        System.out.println("== 게시판 앱 ==");
+
 
         while (true) {
+            System.out.print("명령어: ");
             String input = sc.nextLine().trim();
 
             StringTokenizer st = new StringTokenizer(input);
@@ -54,7 +58,7 @@ public class App {
                     // delete();
                     break;
                 case "exit":
-                    System.out.println("프로그램을 종료합니다.");
+                    systemController.actionExit();
                     return;
                 case "search":
                     // search();

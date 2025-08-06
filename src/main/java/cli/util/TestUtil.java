@@ -1,4 +1,4 @@
-package util;
+package cli.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

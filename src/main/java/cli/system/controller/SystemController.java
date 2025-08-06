@@ -1,4 +1,4 @@
-package system.controller;
+package cli.system.controller;
 
 public class SystemController {
     public void actionExit() {

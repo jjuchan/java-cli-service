@@ -1,7 +1,7 @@
-package board.entity;
+package cli.board.entity;
 
 import lombok.*;
-import util.Base;
+import cli.util.Base;
 
 
 @Getter

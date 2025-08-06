@@ -1,20 +1,20 @@
-package board.service;
+package cli.board.service;
 
-import board.entity.Board;
-import board.repository.BoardRepository;
+import cli.AppContext;
+import cli.board.entity.Board;
+import cli.board.repository.BoardRepository;
 
 import java.util.List;
 
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    public BoardService(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
+    public BoardService() {
+        this.boardRepository = AppContext.boardRepository;
     }
 
     public Board write(String title, String content, String author) {
         Board board = new Board();
-        board.setId(0);  // ID는 저장 시 자동으로 증가되므로 초기값은 0으로 설정
         board.setTitle(title);
         board.setAuthor(author);
         board.setContent(content);

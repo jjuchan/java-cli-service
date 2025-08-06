@@ -1,6 +1,6 @@
-package board.repository;
+package cli.board.repository;
 
-import board.entity.Board;
+import cli.board.entity.Board;
 
 import java.util.ArrayList;
 import java.util.List;
