@@ -15,7 +15,7 @@ public class App {
 
     void run() {
         SystemController systemController = AppContext.systemController;
-        BoardController boardController = new BoardController();
+        BoardController boardController = AppContext.boardController;
 
         System.out.println("== 게시판 앱 ==");
 
