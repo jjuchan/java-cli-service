@@ -100,4 +100,19 @@ class BoardControllerTest {
                 .contains("작성일:").contains("수정일:").contains("조회수:");
     }
 
+    @Test
+    @DisplayName("actionDelete test")
+    void actionDelete() {
+        String rs = AppTestRunner.run("""
+                write
+                제목1
+                내용1
+                작성자1
+                delete 1
+                y
+                """);
+
+        assertThat(rs).contains("번 글이 삭제되었습니다.");
+    }
+
 }

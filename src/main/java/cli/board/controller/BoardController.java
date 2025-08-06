@@ -88,10 +88,24 @@ public class BoardController {
     public void actionUpdate() {
     }
 
-    public void actionDelete() {
-    }
+    public void actionDelete(int boarId) {
+        Board board = boardService.findById(boarId);
+        if (board == null) {
+            System.out.println("해당 게시글이 존재하지 않습니다.");
+            return;
+        }
+        System.out.print("정말로 삭제하시겠습니까? (y/n): ");
+        String confirmation = sc.nextLine().trim().toLowerCase();
+        if (!confirmation.equals("y")) {
+            System.out.println("삭제가 취소되었습니다.");
+            return;
+        } else {
+            boardService.delete(boarId);
+            System.out.println(boarId + " 번 글이 삭제되었습니다.");
+        }
 
-    public void actionExit() {
+
+
     }
 
 

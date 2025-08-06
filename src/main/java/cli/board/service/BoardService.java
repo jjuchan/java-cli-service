@@ -35,4 +35,11 @@ public class BoardService {
     public void increaseViewCount(int boardId) {
         boardRepository.increaseViewCount(boardId);
     }
+
+    public void delete(int boarId) {
+        Board board = boardRepository.findById(boarId);
+        if (board != null) {
+            boardRepository.getAllBoards().remove(board);
+        }
+    }
 }

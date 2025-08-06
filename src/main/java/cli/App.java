@@ -55,7 +55,16 @@ public class App {
                     // update();
                     break;
                 case "delete":
-                    // delete();
+                    if (st.hasMoreTokens()) {
+                        try {
+                            int boardId = Integer.parseInt(st.nextToken());
+                            boardController.actionDelete(boardId);
+                        } catch (NumberFormatException e) {
+                            System.out.println("올바른 게시글 번호를 입력하세요.");
+                        }
+                    } else {
+                        System.out.println("게시글 ID를 입력해주세요.");
+                    }
                     break;
                 case "exit":
                     systemController.actionExit();
