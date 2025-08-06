@@ -35,18 +35,18 @@ public class BoardController {
     }
 
     public void actionList() {
-
         List<Board> boards = boardService.getAllBoards();
 
-        boards.sort((b1, b2) -> b2.getModifiedDate().compareTo(b1.getModifiedDate()));
+        boards.sort((b1, b2) -> {
+            int cmp = b2.getViewCount() - b1.getViewCount();
+            if (cmp == 0) cmp = b2.getModifiedDate().compareTo(b1.getModifiedDate());
+            return cmp;
+        });
 
         for (Board board : boards) {
-
             PrintBoard.print(board);
-
         }
     }
-
 
     public void actionDetail(int boarId) {
         Board board = boardService.findById(boarId);
