@@ -79,7 +79,12 @@ public class App {
                     systemController.actionExit();
                     return;
                 case "search":
-                    // search();
+                    if (st.hasMoreTokens()) {
+                        String keyword = st.nextToken();
+                        boardController.actionSearch(keyword);
+                    } else {
+                        System.out.println("검색어를 입력해주세요.");
+                    }
                     break;
                 default:
                     System.out.println("알 수 없는 명령어입니다.");
