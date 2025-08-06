@@ -101,7 +101,7 @@ public class BoardController {
             return;
         } else {
             boardService.delete(boarId);
-            System.out.println(boarId + " 번 글이 삭제되었습니다.");
+            System.out.println(" 번 글이 삭제되었습니다.");
         }
 
 
