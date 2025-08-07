@@ -4,7 +4,6 @@ import cli.AppContext;
 import cli.board.entity.Board;
 import cli.board.repository.BoardRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class BoardService {
@@ -36,24 +35,20 @@ public class BoardService {
         boardRepository.increaseViewCount(boardId);
     }
 
-    public void delete(int boarId) {
-        Board board = boardRepository.findById(boarId);
-        if (board != null) {
-            boardRepository.getAllBoards().remove(board);
+    public boolean update(int boardId, String title, String content) {
+        boolean result = boardRepository.update(boardId, title, content);
+        if (!result) {
+            System.out.println("해당 게시글이 존재하지 않습니다.");
         }
+        return result;
     }
 
-    public void update(int boarId, String title, String content) {
-        Board board = boardRepository.findById(boarId);
-
-        if (board == null) {
+    public boolean delete(int boardId) {
+        boolean result = boardRepository.delete(boardId);
+        if (!result) {
             System.out.println("해당 게시글이 존재하지 않습니다.");
-            return;
         }
-        board.setTitle(title);
-        board.setContent(content);
-        board.setModifiedDate(LocalDateTime.now());
-
+        return result;
     }
 
 }

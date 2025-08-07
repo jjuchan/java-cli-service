@@ -71,13 +71,16 @@ public class BoardController {
         System.out.print("내용 (현재: " + board.getContent() + "): ");
         String content = sc.nextLine().trim();
 
-        boardService.update(boardId, title, content);
-        System.out.println(boardId + " 번 글이 수정되었습니다.");
-
+        boolean updated = boardService.update(boardId, title, content);
+        if (updated) {
+            System.out.println(boardId + " 번 글이 수정되었습니다.");
+        } else {
+            System.out.println("수정에 실패했습니다.");
+        }
     }
 
-    public void actionDelete(int boarId) {
-        Board board = boardService.findById(boarId);
+    public void actionDelete(int boardId) {
+        Board board = boardService.findById(boardId);
         if (board == null) {
             System.out.println("해당 게시글이 존재하지 않습니다.");
             return;
@@ -87,12 +90,14 @@ public class BoardController {
         if (!confirmation.equals("y")) {
             System.out.println("삭제가 취소되었습니다.");
             return;
-        } else {
-            boardService.delete(boarId);
-            System.out.println(boarId + " 번 글이 삭제되었습니다.");
         }
 
-
+        boolean deleted = boardService.delete(boardId);
+        if (deleted) {
+            System.out.println(boardId + " 번 글이 삭제되었습니다.");
+        } else {
+            System.out.println("삭제에 실패했습니다.");
+        }
     }
 
 

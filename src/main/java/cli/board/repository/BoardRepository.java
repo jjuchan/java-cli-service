@@ -2,6 +2,7 @@ package cli.board.repository;
 
 import cli.board.entity.Board;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,28 @@ public class BoardRepository {
         boards.add(board);
         return board;
     }
+    public boolean update(int boardId, String title, String content) {
+        Board board = findById(boardId);
+        if (board == null) {
+            return false;
+        }
+        board.setTitle(title);
+        board.setContent(content);
+        board.setModifiedDate(LocalDateTime.now());
+        return true;
+    }
+
+    public boolean delete(int boardId) {
+        Board board = findById(boardId);
+        if (board == null) {
+            return false;
+        }
+        return boards.remove(board);
+    }
+
+
+
+
 
     public List<Board> getAllBoards() {
         return boards;
