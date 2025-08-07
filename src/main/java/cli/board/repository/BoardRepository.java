@@ -19,9 +19,9 @@ public class BoardRepository {
         return boards;
     }
 
-    public Board findById(int boarId) {
+    public Board findById(int boardId) {
         return boards.stream()
-                .filter(board -> board.getId() == boarId)
+                .filter(board -> board.getId() == boardId)
                 .findFirst()
                 .orElse(null);
     }

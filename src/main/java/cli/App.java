@@ -40,7 +40,9 @@ public class App {
                     break;
                 case "detail":
                     Integer detailId = InputParser.parseId(tokens);
-                    if (detailId != null) {
+                    if (detailId == null) {
+                        System.out.println("게시글 ID를 입력해주세요.");
+                    } else {
                         boardController.actionDetail(detailId);
                     }
                     break;
@@ -60,7 +62,12 @@ public class App {
                     systemController.actionExit();
                     return;
                 case "search":
-                    InputParser.handleSearch(input, boardController);
+                    String keyword = InputParser.extractSearchKeyword(input);
+                    if (keyword == null || keyword.isEmpty()) {
+                        System.out.println("검색어를 입력해주세요.");
+                    } else {
+                        boardController.actionSearch(keyword);
+                    }
                     break;
                 default:
                     System.out.println("알 수 없는 명령어입니다.");
