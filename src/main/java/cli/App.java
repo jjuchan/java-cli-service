@@ -32,46 +32,48 @@ public class App {
             String cmd = tokens[0];
 
             switch (cmd) {
-                case "write":
-                    boardController.actionWrite();
-                    break;
-                case "list":
-                    boardController.actionList();
-                    break;
-                case "detail":
+                case "write" -> boardController.actionWrite();
+
+                case "list" -> boardController.actionList();
+
+                case "detail" -> {
                     Integer detailId = InputParser.parseId(tokens);
                     if (detailId == null) {
                         System.out.println("게시글 ID를 입력해주세요.");
                     } else {
                         boardController.actionDetail(detailId);
                     }
-                    break;
-                case "update":
-                   Integer updateId = InputParser.parseId(tokens);
+                }
+
+                case "update" -> {
+                    Integer updateId = InputParser.parseId(tokens);
                     if (updateId != null) {
                         boardController.actionUpdate(updateId);
                     }
-                    break;
-                case "delete":
+                }
+
+                case "delete" -> {
                     Integer deleteId = InputParser.parseId(tokens);
                     if (deleteId != null) {
                         boardController.actionDelete(deleteId);
                     }
-                    break;
-                case "exit":
-                    systemController.actionExit();
-                    return;
-                case "search":
+                }
+
+                case "search" -> {
                     String keyword = InputParser.extractSearchKeyword(input);
                     if (keyword == null || keyword.isEmpty()) {
                         System.out.println("검색어를 입력해주세요.");
                     } else {
                         boardController.actionSearch(keyword);
                     }
-                    break;
-                default:
-                    System.out.println("알 수 없는 명령어입니다.");
-                    break;
+                }
+
+                case "exit" -> {
+                    systemController.actionExit();
+                    return;
+                }
+
+                default -> System.out.println("알 수 없는 명령어입니다.");
             }
         }
     }

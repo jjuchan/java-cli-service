@@ -15,6 +15,7 @@ public class BoardRepository {
         boards.add(board);
         return board;
     }
+
     public boolean update(int boardId, String title, String content) {
         Board board = findById(boardId);
         if (board == null) {
@@ -34,20 +35,14 @@ public class BoardRepository {
         return boards.remove(board);
     }
 
-
-
-
-
     public List<Board> getAllBoards() {
         return boards;
     }
 
     public Board findById(int boardId) {
-        return boards.stream()
-                .filter(board -> board.getId() == boardId)
-                .findFirst()
-                .orElse(null);
+        return boards.stream().filter(board -> board.getId() == boardId).findFirst().orElse(null);
     }
+
     public void increaseViewCount(int boardId) {
         Board board = findById(boardId);
         if (board != null) {

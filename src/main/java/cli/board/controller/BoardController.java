@@ -1,6 +1,5 @@
 package cli.board.controller;
 
-
 import cli.AppContext;
 import cli.board.entity.Board;
 import cli.board.service.BoardService;
@@ -100,7 +99,6 @@ public class BoardController {
         }
     }
 
-
     public void actionSearch(String keyword) {
         List<Board> boards = boardService.getAllBoards();
         boolean found = false;
@@ -114,6 +112,5 @@ public class BoardController {
             System.out.println("검색 결과가 없습니다.");
         }
     }
-
 
 }
